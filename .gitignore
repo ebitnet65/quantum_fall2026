@@ -22,6 +22,7 @@ env/
 *.html
 *.pdf
 *.tex
+!output/pdf/*.pdf
 
 # Local editor files
 .vscode/
