@@ -1,0 +1,339 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{braket}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.55em}
+\title{\textbf{PHYS 3316 -- Quantum Physics I}\\
+Class Notes -- 22 September 2026}
+\author{Eric R. Bittner}
+\date{}
+\begin{document}
+\maketitle
+\section{Particle Subject to a Constant Force}
+Consider a particle subject to a constant force, with a linear potential.
+The Hamiltonian is
+\[
+H=\frac{p^2}{2m}+V(x).
+\]
+From Ehrenfest's theorem,
+\[
+i\hbar\frac{d}{dt}\langle x\rangle
+=
+\langle[x,H]\rangle
+=
+\frac{i\hbar}{m}\langle p\rangle,
+\]
+so that
+\[
+\boxed{
+\frac{d\langle x\rangle}{dt}
+=
+\frac{\langle p\rangle}{m}.
+}
+\]
+Likewise,
+\[
+i\hbar\frac{d}{dt}\langle p\rangle
+=
+\langle[p,H]\rangle
+=
+\frac{\hbar}{i}
+\left\langle\frac{\partial V}{\partial x}\right\rangle.
+\]
+Thus
+\[
+\boxed{
+\frac{d\langle p\rangle}{dt}
+=
+-\left\langle\frac{\partial V}{\partial x}\right\rangle.
+}
+\]
+For a constant force $f$ we may write
+\[
+\frac{d\langle p\rangle}{dt}=f,
+\]
+and hence
+\[
+\langle p(t)\rangle
+=
+\langle p(0)\rangle+ft.
+\]
+If
+\[
+\langle p(0)\rangle=0,
+\]
+then
+\[
+\langle x(t)\rangle
+=
+\frac{f}{2m}t^2.
+\]
+% The handwritten notes use both V(x)=fx and a force denoted +f.
+% Since F=-dV/dx, this corresponds to a sign-convention change between
+% portions of the board work. The equations above preserve the stated
+% constant-force equation d<p>/dt=f.
+\subsection{Momentum Dispersion}
+Consider
+\[
+\frac{d}{dt}
+\left\langle
+(p-\langle p\rangle)^2
+\right\rangle
+=
+\frac{d\langle p^2\rangle}{dt}
+-
+\frac{d\langle p\rangle^2}{dt}.
+\]
+Using Ehrenfest's theorem,
+\[
+i\hbar\frac{d}{dt}\langle p^2\rangle
+=
+\langle[p^2,H]\rangle.
+\]
+For a linear potential,
+\[
+[p^2,V]
+=
+p[p,V]+[p,V]p,
+\]
+so that
+\[
+\frac{d}{dt}\langle p^2\rangle
+=
+2f\langle p\rangle.
+\]
+Also,
+\[
+\frac{d}{dt}\langle p\rangle^2
+=
+2\langle p\rangle
+\frac{d\langle p\rangle}{dt}
+=
+2f\langle p\rangle.
+\]
+Therefore
+\[
+\boxed{
+\frac{d}{dt}(\Delta p)^2=0.
+}
+\]
+Thus the momentum distribution translates under a constant force without
+changing its width: the motion is dispersionless in momentum space.
+\section{Momentum-Space Solution}
+Now solve the same constant-force problem directly in momentum space. In
+position space,
+\[
+i\hbar\frac{\partial}{\partial t}\psi(x,t)
+=
+\left[
+-\frac{\hbar^2}{2m}\frac{\partial^2}{\partial x^2}
++
+fx
+\right]\psi(x,t).
+\]
+Under the Fourier transform,
+\[
+x\longrightarrow i\hbar\frac{\partial}{\partial p},
+\qquad
+-i\hbar\frac{\partial}{\partial x}\longrightarrow p.
+\]
+Therefore
+\[
+i\hbar\frac{\partial\widetilde\psi}{\partial t}
+=
+\left[
+\frac{p^2}{2m}
++
+i\hbar f\frac{\partial}{\partial p}
+\right]\widetilde\psi,
+\]
+or
+\[
+\frac{\partial\widetilde\psi}{\partial t}
+=
+f\frac{\partial\widetilde\psi}{\partial p}
+-
+\frac{i}{\hbar}\frac{p^2}{2m}\widetilde\psi.
+\]
+This is a first-order transport equation in $p$. Its characteristics obey
+\[
+\frac{dp}{dt}=-f,
+\]
+which is the classical force law for the sign convention $V(x)=fx$:
+\[
+-\frac{\partial V}{\partial x}=-f.
+\]
+Along a characteristic,
+\[
+p(t)=p_0-ft,
+\]
+and
+\[
+\frac{d\widetilde\psi}{dt}
+=
+-\frac{i}{2m\hbar}p(t)^2\widetilde\psi.
+\]
+Thus, if
+\[
+\widetilde\psi(p,0)=\widetilde\psi_0(p),
+\]
+the solution may be written
+\[
+\boxed{
+\widetilde\psi(p,t)
+=
+\widetilde\psi_0(p+ft)
+\exp\left[
+-\frac{i}{2m\hbar}
+\left(
+p^2t+pft^2+\frac{f^2t^3}{3}
+\right)
+\right].
+}
+\]
+The momentum distribution therefore simply translates while accumulating a
+phase.
+\section{Time Dependence of a Free Gaussian Wavepacket}
+Consider a free particle initially localized in a Gaussian state,
+\[
+\psi(x,0)
+=
+A e^{-\sigma x^2},
+\]
+with normalization
+\[
+A=
+\left(\frac{2\sigma}{\pi}\right)^{1/4}.
+\]
+Transform to momentum space:
+\[
+\phi(p)
+=
+\frac{1}{\sqrt{2\pi\hbar}}
+\int_{-\infty}^{\infty}
+e^{-ipx/\hbar}\psi(x)\,dx.
+\]
+For the Gaussian,
+\[
+\phi(p)
+=
+\frac{A}{\sqrt{2\sigma\hbar}}
+\exp\left(
+-\frac{p^2}{4\sigma\hbar^2}
+\right).
+\]
+For a free particle,
+\[
+H=\frac{p^2}{2m},
+\]
+so
+\[
+i\hbar\frac{\partial\phi}{\partial t}
+=
+\frac{p^2}{2m}\phi.
+\]
+The momentum-space wavefunction therefore evolves only by a phase:
+\[
+\boxed{
+\phi(p,t)
+=
+\phi(p,0)
+\exp\left(
+-\frac{ip^2t}{2m\hbar}
+\right).
+}
+\]
+In particular,
+\[
+|\phi(p,t)|^2=|\phi(p,0)|^2;
+\]
+the momentum distribution does not change with time.
+Transforming back to position space,
+\[
+\psi(x,t)
+=
+\frac{1}{\sqrt{2\pi\hbar}}
+\int_{-\infty}^{\infty}
+\phi(p,t)e^{ipx/\hbar}\,dp.
+\]
+The remaining integral is again Gaussian and gives
+\[
+\boxed{
+\psi(x,t)
+=
+A\,
+\frac{1}{\sqrt{1+2i\hbar\sigma t/m}}
+\exp\left[
+-\frac{\sigma x^2}
+{1+2i\hbar\sigma t/m}
+\right].
+}
+\]
+Define the characteristic spreading time
+\[
+\boxed{
+\tau=\frac{m}{2\hbar\sigma}.
+}
+\]
+Then
+\[
+\psi(x,t)
+=
+A\,
+\frac{1}{\sqrt{1+it/\tau}}
+\exp\left[
+-\frac{\sigma x^2}{1+it/\tau}
+\right].
+\]
+The probability density remains Gaussian, but its spatial width increases
+with time. Initially,
+\[
+(\Delta x)_0^2=\frac{1}{4\sigma},
+\]
+while the momentum variance remains fixed:
+\[
+(\Delta p)^2=\sigma\hbar^2.
+\]
+The spatial width is
+\[
+\boxed{
+\Delta x(t)
+=
+\frac{1}{2\sqrt{\sigma}}
+\sqrt{
+1+
+\left(
+\frac{2\hbar\sigma t}{m}
+\right)^2
+}.
+}
+\]
+Equivalently,
+\[
+\boxed{
+(\Delta x(t))^2
+=
+(\Delta x_0)^2
++
+\left(
+\frac{\Delta p}{m}t
+\right)^2.
+}
+\]
+The second term represents the spreading caused by the distribution of
+velocities present in a localized state.
+If the initial packet has a nonzero mean momentum,
+\[
+\psi(x,0)
+=
+A e^{-\sigma x^2}e^{ip_0x/\hbar},
+\]
+then
+\[
+\langle v\rangle=\frac{p_0}{m},
+\]
+while the packet undergoes the same spreading described above.
+\end{document}

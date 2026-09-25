@@ -18,11 +18,8 @@ env/
 # Jupyter
 .ipynb_checkpoints/
 
-# Notebook exports and generated outputs
+# Notebook HTML exports
 *.html
-*.pdf
-*.tex
-!output/pdf/*.pdf
 
 # Local editor files
 .vscode/
