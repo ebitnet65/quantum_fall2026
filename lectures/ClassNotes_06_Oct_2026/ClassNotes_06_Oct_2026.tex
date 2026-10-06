@@ -1,0 +1,578 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage{xcolor}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Quantum Mechanics}
+\rhead{The Hydrogen Atom, Part II}
+\cfoot{\thepage}
+\setlength{\headheight}{14pt}
+
+\newcommand{\dd}{\mathop{}\!\mathrm{d}}
+\newcommand{\ee}{\mathrm{e}}
+\newcommand{\ii}{\mathrm{i}}
+\newcommand{\avg}[1]{\left\langle #1\right\rangle}
+\newcommand{\abs}[1]{\left\lvert #1\right\rvert}
+\newcommand{\ket}[1]{\left\lvert #1\right\rangle}
+\newcommand{\bra}[1]{\left\langle #1\right\rvert}
+\newcommand{\braket}[2]{\left\langle #1\middle|#2\right\rangle}
+\newcommand{\comm}[2]{\left[#1,#2\right]}
+\newcommand{\vect}[1]{\bm{#1}}
+
+\title{The Hydrogen Atom, Part II\\[0.4em]
+\large Radial Properties, the Virial Theorem, and Angular Solutions}
+\author{Quantum Mechanics Lecture Notes}
+\date{October 6, 2026}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Radial solutions and their properties}
+
+For a hydrogenlike atom of nuclear charge $Z$, separation of the time-independent
+Schr\"odinger equation gives
+\begin{equation}
+  \psi_{n\ell m}(r,\theta,\phi)
+  =R_{n\ell}(r)Y_{\ell}^{m}(\theta,\phi).
+\end{equation}
+The normalized radial wavefunctions can be written as
+\begin{equation}
+  R_{n\ell}(r)
+  =N_{n\ell}
+  \left(\frac{2Zr}{na_0}\right)^{\ell}
+  \exp\left(-\frac{Zr}{na_0}\right)
+  L_{n-\ell-1}^{2\ell+1}\left(\frac{2Zr}{na_0}\right),
+  \label{eq:radial-solution}
+\end{equation}
+where $L_q^{\alpha}$ is an associated Laguerre polynomial and
+\begin{equation}
+  N_{n\ell}
+  =\left(\frac{2Z}{na_0}\right)^{3/2}
+  \sqrt{\frac{(n-\ell-1)!}{2n(n+\ell)!}}.
+\end{equation}
+For a finite nuclear mass, the Bohr radius is defined using the electron--nucleus
+reduced mass $\mu$:
+\begin{equation}
+  a_0=\frac{4\pi\epsilon_0\hbar^2}{\mu e^2}.
+\end{equation}
+
+The allowed quantum numbers are
+\begin{equation}
+  n=1,2,3,\ldots,
+  \qquad
+  \ell=0,1,\ldots,n-1,
+  \qquad
+  m=-\ell,-\ell+1,\ldots,\ell.
+\end{equation}
+
+\subsection{Behavior at the origin}
+
+Near the origin, the associated Laguerre polynomial approaches a constant, so
+\begin{equation}
+  R_{n\ell}(r)\sim r^{\ell}
+  \qquad (r\to 0).
+\end{equation}
+Consequently, only the $\ell=0$ states (the $s$ states) can have nonzero
+wavefunction amplitude at the origin.  All states with $\ell>0$ vanish there.
+
+\subsection{Behavior at large radius}
+
+Every bound-state radial function is a polynomial in $r$ multiplying the
+exponential factor
+\begin{equation}
+  R_{n\ell}(r)\sim \operatorname{poly}(r)
+  \exp\left(-\frac{Zr}{na_0}\right)
+  \qquad (r\to\infty).
+\end{equation}
+Thus all bound states decay exponentially.  The characteristic radial scale is
+of order $n^2a_0/Z$: excited states extend farther from the nucleus as $n$
+increases.
+
+\subsection{Radial and angular nodes}
+
+The associated Laguerre polynomial in Eq.~\eqref{eq:radial-solution} has degree
+$n-\ell-1$.  Therefore,
+\begin{align}
+  N_{\text{radial}}&=n-\ell-1,\\
+  N_{\text{angular}}&=\ell,\\
+  N_{\text{total}}&=n-1.
+\end{align}
+Radial nodes occur at finite positive values of $r$ for which $R_{n\ell}(r)=0$.
+Angular nodes are nodal surfaces of $Y_{\ell}^{m}$.
+
+\subsection{Radial probability distribution}
+
+The probability of finding the electron in a volume element is
+\begin{equation}
+  \dd P=\abs{\psi(r,\theta,\phi)}^2 r^2\dd r\,\dd\Omega,
+  \qquad
+  \dd\Omega=\sin\theta\,\dd\theta\,\dd\phi.
+\end{equation}
+Because the spherical harmonics are normalized,
+$\int\abs{Y_{\ell}^{m}}^2\dd\Omega=1$, integration over solid angle gives
+\begin{equation}
+  \dd P=P_{n\ell}(r)\dd r,
+  \qquad
+  \boxed{P_{n\ell}(r)=r^2\abs{R_{n\ell}(r)}^2}.
+\end{equation}
+The radial probability distribution is therefore not simply $\abs{R}^2$; the
+spherical volume factor $r^2$ is essential.
+
+For the ground state,
+\begin{equation}
+  R_{10}(r)=2\left(\frac{Z}{a_0}\right)^{3/2}
+  \exp\left(-\frac{Zr}{a_0}\right),
+\end{equation}
+and hence
+\begin{equation}
+  P_{10}(r)=4\left(\frac{Z}{a_0}\right)^3r^2
+  \exp\left(-\frac{2Zr}{a_0}\right).
+\end{equation}
+Although $\abs{R_{10}(r)}^2$ is largest at the origin, $P_{10}(0)=0$.  The radial
+probability is maximal at
+\begin{equation}
+  \boxed{r_{\mathrm{mp}}=\frac{a_0}{Z}},
+\end{equation}
+the Bohr radius for hydrogen ($Z=1$).
+
+\subsection{Expectation values}
+
+A useful general result is
+\begin{equation}
+  \boxed{
+  \avg{r}_{n\ell}
+  =\frac{a_0}{2Z}\left[3n^2-\ell(\ell+1)\right]
+  }.
+\end{equation}
+For the ground state,
+\begin{equation}
+  r_{\mathrm{mp}}=\frac{a_0}{Z},
+  \qquad
+  \avg{r}_{10}=\frac{3a_0}{2Z}.
+\end{equation}
+The most probable radius and the mean radius are different quantities.  We will
+also derive below that
+\begin{equation}
+  \boxed{\avg{\frac{1}{r}}_{n\ell}=\frac{Z}{a_0n^2}}.
+  \label{eq:inverse-r-expectation}
+\end{equation}
+In general, $\avg{1/r}\neq 1/\avg{r}$.
+
+\section{The quantum virial theorem}
+
+Consider
+\begin{equation}
+  H=T+V=\frac{\vect{p}^{,2}}{2\mu}+V(\vect{r})
+\end{equation}
+and introduce the Hermitian dilation operator
+\begin{equation}
+  \boxed{
+  G=\frac{1}{2}\left(\vect{r}\cdot\vect{p}
+  +\vect{p}\cdot\vect{r}\right)
+  }.
+\end{equation}
+For a stationary state $H\ket{n}=E_n\ket{n}$,
+\begin{equation}
+  \avg{\comm{H}{G}}_n
+  =\bra{n}HG\ket{n}-\bra{n}GH\ket{n}=0.
+\end{equation}
+Using $\comm{r_i}{p_j}=\ii\hbar\delta_{ij}$ gives
+\begin{align}
+  \comm{T}{G}&=-2\ii\hbar T,\\
+  \comm{V}{G}&=\ii\hbar\,\vect{r}\cdot\nabla V.
+\end{align}
+Therefore
+\begin{equation}
+  \comm{H}{G}
+  =\ii\hbar\left(\vect{r}\cdot\nabla V-2T\right),
+\end{equation}
+and its expectation value yields the quantum virial theorem:
+\begin{equation}
+  \boxed{2\avg{T}=\avg{\vect{r}\cdot\nabla V}}.
+  \label{eq:virial-general}
+\end{equation}
+
+For a central potential $V=V(r)$,
+\begin{equation}
+  \vect{r}\cdot\nabla V=r\frac{\dd V}{\dd r}.
+\end{equation}
+If the potential is homogeneous of degree $k$,
+\begin{equation}
+  V(a\vect{r})=a^kV(\vect{r}),
+\end{equation}
+Euler's theorem gives $\vect{r}\cdot\nabla V=kV$.  Equation
+\eqref{eq:virial-general} then becomes
+\begin{equation}
+  \boxed{2\avg{T}=k\avg{V}}.
+\end{equation}
+
+For the Coulomb potential, $V(r)\propto r^{-1}$, so $k=-1$ and
+\begin{equation}
+  \boxed{2\avg{T}=-\avg{V}}.
+\end{equation}
+It follows that
+\begin{equation}
+  E=\avg{T}+\avg{V},
+  \qquad
+  \boxed{\avg{T}=-E},
+  \qquad
+  \boxed{\avg{V}=2E}.
+\end{equation}
+
+For the remainder of this subsection, set $4\pi\epsilon_0=1$.  Then
+\begin{equation}
+  V(r)=-\frac{Ze^2}{r},
+  \qquad
+  E_n=-\frac{\mu Z^2e^4}{2\hbar^2n^2}
+      =-\frac{e^2Z^2}{2a_0n^2},
+  \qquad
+  a_0=\frac{\hbar^2}{\mu e^2}.
+\end{equation}
+Using $\avg{V}=2E_n$,
+\begin{equation}
+  -Ze^2\avg{\frac{1}{r}}
+  =-\frac{\mu Z^2e^4}{\hbar^2n^2},
+\end{equation}
+which immediately recovers Eq.~\eqref{eq:inverse-r-expectation}:
+\begin{equation}
+  \boxed{
+  \avg{\frac{1}{r}}=\frac{\mu Ze^2}{\hbar^2n^2}
+  =\frac{Z}{a_0n^2}
+  }.
+\end{equation}
+
+\subsection{Why the dilation operator generates scale transformations}
+
+The role of $G$ is deeper than its use in the virial theorem.  Define the unitary
+operator
+\begin{equation}
+  U(\lambda)=\exp\left(-\frac{\ii\lambda G}{\hbar}\right).
+\end{equation}
+The commutators
+\begin{equation}
+  \comm{G}{r_i}=-\ii\hbar r_i,
+  \qquad
+  \comm{G}{p_i}=+\ii\hbar p_i
+\end{equation}
+imply, for $r_i(\lambda)=U^{\dagger}(\lambda)r_iU(\lambda)$ and similarly for
+$p_i(\lambda)$,
+\begin{align}
+  \frac{\dd r_i(\lambda)}{\dd\lambda}&=r_i(\lambda),\\
+  \frac{\dd p_i(\lambda)}{\dd\lambda}&=-p_i(\lambda).
+\end{align}
+Thus
+\begin{equation}
+  \boxed{
+  \vect{r}(\lambda)=\ee^{\lambda}\vect{r},
+  \qquad
+  \vect{p}(\lambda)=\ee^{-\lambda}\vect{p}
+  }.
+\end{equation}
+The reciprocal scaling preserves the canonical commutator
+$\comm{r_i}{p_j}=\ii\hbar\delta_{ij}$.
+
+In the coordinate representation, $\vect{p}=-\ii\hbar\nabla$.  In three
+dimensions,
+\begin{align}
+  \vect{r}\cdot\vect{p}&=-\ii\hbar\,\vect{r}\cdot\nabla,\\
+  \vect{p}\cdot\vect{r}&=-\ii\hbar\left(\vect{r}\cdot\nabla+3\right),
+\end{align}
+so
+\begin{equation}
+  \boxed{G=-\ii\hbar\left(\vect{r}\cdot\nabla+\frac{3}{2}\right)}.
+\end{equation}
+Acting on a wavefunction,
+\begin{equation}
+  \boxed{
+  \psi_{\lambda}(\vect{r})
+  =\bigl(U(\lambda)\psi\bigr)(\vect{r})
+  =\ee^{-3\lambda/2}\psi\left(\ee^{-\lambda}\vect{r}\right)
+  }.
+\end{equation}
+The factor $\ee^{-3\lambda/2}$ ensures that normalization is preserved.
+
+Under a dilation, the kinetic and homogeneous potential terms scale as
+\begin{equation}
+  T\longrightarrow \ee^{-2\lambda}T,
+  \qquad
+  V\longrightarrow \ee^{k\lambda}V.
+\end{equation}
+Thus the energy expectation in the scaled state is
+\begin{equation}
+  E(\lambda)
+  =\ee^{-2\lambda}\avg{T}
+  +\ee^{k\lambda}\avg{V}.
+\end{equation}
+An energy eigenstate is stationary under an infinitesimal change of spatial
+scale:
+\begin{equation}
+  \left.\frac{\dd E}{\dd\lambda}\right|_{\lambda=0}
+  =-2\avg{T}+k\avg{V}=0.
+\end{equation}
+This is again the virial theorem.  Equivalently, $\comm{H}{G}$ measures the
+response of the Hamiltonian to an infinitesimal spatial dilation.
+
+\section{Angular solutions}
+
+Write the separated wavefunction as
+\begin{equation}
+  \psi(r,\theta,\phi)=R(r)Y(\theta,\phi).
+\end{equation}
+The angular eigenvalue equation is
+\begin{equation}
+  \Lambda^2Y=\lambda Y,
+\end{equation}
+where the dimensionless angular operator is
+\begin{equation}
+  \boxed{
+  \Lambda^2=-\left[
+  \frac{1}{\sin\theta}\frac{\partial}{\partial\theta}
+  \left(\sin\theta\frac{\partial}{\partial\theta}\right)
+  +\frac{1}{\sin^2\theta}\frac{\partial^2}{\partial\phi^2}
+  \right]
+  }.
+\end{equation}
+
+\subsection{Separation of the angular equation}
+
+Set
+\begin{equation}
+  Y(\theta,\phi)=\Theta(\theta)\Phi(\phi).
+\end{equation}
+Substitution gives
+\begin{equation}
+  -\frac{1}{\Theta\sin\theta}
+  \frac{\dd}{\dd\theta}\left(\sin\theta\frac{\dd\Theta}{\dd\theta}\right)
+  -\frac{1}{\Phi\sin^2\theta}\frac{\dd^2\Phi}{\dd\phi^2}
+  =\lambda.
+\end{equation}
+The $\phi$-dependent term must be constant.  Writing that constant as $m^2$ gives
+\begin{equation}
+  \frac{\dd^2\Phi}{\dd\phi^2}+m^2\Phi=0,
+  \qquad
+  \Phi(\phi)=A\ee^{\ii m\phi}+B\ee^{-\ii m\phi}.
+\end{equation}
+For an $L_z$ eigenstate, choose $\Phi_m\propto\ee^{\ii m\phi}$.  Single-valuedness
+requires
+\begin{equation}
+  \Phi(\phi+2\pi)=\Phi(\phi)
+  \quad\Longrightarrow\quad
+  \ee^{2\pi\ii m}=1,
+\end{equation}
+and therefore
+\begin{equation}
+  \boxed{m=0,\pm1,\pm2,\ldots}.
+\end{equation}
+
+The polar equation is
+\begin{equation}
+  \frac{1}{\sin\theta}\frac{\dd}{\dd\theta}
+  \left(\sin\theta\frac{\dd\Theta}{\dd\theta}\right)
+  +\left(\lambda-\frac{m^2}{\sin^2\theta}\right)\Theta=0.
+\end{equation}
+With $x=\cos\theta$ and
+$\dd/\dd\theta=-\sin\theta\,\dd/\dd x$, this becomes
+\begin{equation}
+  \boxed{
+  (1-x^2)\frac{\dd^2\Theta}{\dd x^2}
+  -2x\frac{\dd\Theta}{\dd x}
+  +\left(\lambda-\frac{m^2}{1-x^2}\right)\Theta=0
+  }.
+  \label{eq:associated-legendre}
+\end{equation}
+This is the associated Legendre equation.  Regularity at the poles $x=\pm1$
+restricts the separation constant and the quantum numbers to
+\begin{equation}
+  \boxed{\lambda=\ell(\ell+1)},
+  \qquad
+  \ell=0,1,2,\ldots,
+  \qquad
+  \boxed{\abs{m}\leq\ell}.
+\end{equation}
+Thus the quantization of $\ell$ and $m$ follows from the boundary conditions:
+single-valuedness in $\phi$ and regularity at the poles.
+
+\subsection{Spherical harmonics}
+
+Adopt the Condon--Shortley convention
+\begin{equation}
+  P_{\ell}^{m}(x)
+  =(-1)^m(1-x^2)^{m/2}\frac{\dd^m}{\dd x^m}P_{\ell}(x)
+  \qquad (m\geq0).
+\end{equation}
+The normalized spherical harmonics are
+\begin{equation}
+  \boxed{
+  Y_{\ell}^{m}(\theta,\phi)
+  =\sqrt{\frac{2\ell+1}{4\pi}
+  \frac{(\ell-m)!}{(\ell+m)!}}
+  P_{\ell}^{m}(\cos\theta)\ee^{\ii m\phi}
+  }
+  \qquad (m\geq0),
+\end{equation}
+with negative-$m$ functions defined by
+\begin{equation}
+  Y_{\ell}^{-m}=(-1)^m\bigl(Y_{\ell}^{m}\bigr)^*.
+\end{equation}
+They obey
+\begin{equation}
+  \int Y_{\ell}^{m*}(\theta,\phi)
+  Y_{\ell'}^{m'}(\theta,\phi)\,\dd\Omega
+  =\delta_{\ell\ell'}\delta_{mm'}.
+\end{equation}
+
+\section{Spherical harmonics and angular momentum}
+
+The angular operator is the dimensionless form of orbital angular momentum:
+\begin{equation}
+  \boxed{L^2=\hbar^2\Lambda^2},
+  \qquad
+  \boxed{L_z=-\ii\hbar\frac{\partial}{\partial\phi}}.
+\end{equation}
+Therefore,
+\begin{align}
+  L^2Y_{\ell}^{m}
+  &=\hbar^2\ell(\ell+1)Y_{\ell}^{m},\\
+  L_zY_{\ell}^{m}
+  &=\hbar mY_{\ell}^{m}.
+\end{align}
+For a central potential,
+\begin{equation}
+  \comm{H}{L^2}=0,
+  \qquad
+  \comm{H}{L_z}=0,
+\end{equation}
+so energy eigenstates may also be chosen as simultaneous eigenstates of $L^2$
+and one angular-momentum component, conventionally $L_z$.  We cannot choose all
+three components simultaneously because
+\begin{equation}
+  \comm{L_x}{L_y}=\ii\hbar L_z,
+  \qquad
+  \comm{L_y}{L_z}=\ii\hbar L_x,
+  \qquad
+  \comm{L_z}{L_x}=\ii\hbar L_y.
+\end{equation}
+
+\section{Orbital shapes and degeneracies}
+
+For the pure Coulomb problem, the bound-state energy depends only on $n$:
+\begin{equation}
+  E_n=-\frac{\mu Z^2e^4}{2(4\pi\epsilon_0)^2\hbar^2n^2}.
+\end{equation}
+In the absence of spin, each shell therefore has degeneracy
+\begin{equation}
+  \sum_{\ell=0}^{n-1}(2\ell+1)=n^2.
+\end{equation}
+External fields, relativistic corrections, and other perturbations can lift this
+degeneracy.  For $n=2$, the four spatial orbitals are one $2s$ orbital and three
+$2p$ orbitals.
+
+The orbital letter labels describe the angular quantum number and the associated
+shape:
+\begin{center}
+\begin{tabular}{ccl}
+  $\ell$ & label & qualitative angular shape\\ \hline
+  $0$ & $s$ & spherical; one angular state\\
+  $1$ & $p$ & two-lobed (dumbbell); three angular states\\
+  $2$ & $d$ & four-lobed or $d_{z^2}$ form; five angular states
+\end{tabular}
+\end{center}
+The surfaces commonly drawn in chemistry are angular-density or isosurface
+representations; the signs placed on lobes indicate the phase of the wavefunction,
+not electric charge.
+
+\subsection{The p orbitals as two different bases}
+
+For $\ell=1$,
+\begin{align}
+  Y_1^0(\theta,\phi)
+  &=\sqrt{\frac{3}{4\pi}}\cos\theta
+   =\sqrt{\frac{3}{4\pi}}\frac{z}{r},\\
+  Y_1^{+1}(\theta,\phi)
+  &=-\sqrt{\frac{3}{8\pi}}\sin\theta\,\ee^{\ii\phi},\\
+  Y_1^{-1}(\theta,\phi)
+  &=+\sqrt{\frac{3}{8\pi}}\sin\theta\,\ee^{-\ii\phi}.
+\end{align}
+Thus $Y_1^0$ is the angular part of the familiar $p_z$ orbital:
+\begin{equation}
+  \boxed{Y_{p_z}=Y_1^0=\sqrt{\frac{3}{4\pi}}\frac{z}{r}}.
+\end{equation}
+
+The $m=\pm1$ functions are complex eigenfunctions of $L_z$.  The familiar real
+$p_x$ and $p_y$ orbitals are linear combinations of these degenerate states:
+\begin{align}
+  \boxed{
+  Y_{p_x}=\frac{1}{\sqrt{2}}\left(Y_1^{-1}-Y_1^{+1}\right)
+  }
+  &=\sqrt{\frac{3}{4\pi}}\sin\theta\cos\phi
+   =\sqrt{\frac{3}{4\pi}}\frac{x}{r},\\[0.5em]
+  \boxed{
+  Y_{p_y}=\frac{\ii}{\sqrt{2}}\left(Y_1^{-1}+Y_1^{+1}\right)
+  }
+  &=\sqrt{\frac{3}{4\pi}}\sin\theta\sin\phi
+   =\sqrt{\frac{3}{4\pi}}\frac{y}{r}.
+\end{align}
+The complex basis
+\begin{equation}
+  \left\{Y_1^{+1},Y_1^0,Y_1^{-1}\right\}
+\end{equation}
+diagonalizes $L_z$, while the real Cartesian basis
+\begin{equation}
+  \left\{Y_{p_x},Y_{p_y},Y_{p_z}\right\}
+\end{equation}
+makes spatial orientation transparent.  These are two bases for the same
+three-dimensional $\ell=1$ subspace; they do not represent six different states.
+In particular,
+\begin{equation}
+  L_zY_{p_x}=\ii\hbar Y_{p_y},
+  \qquad
+  L_zY_{p_y}=-\ii\hbar Y_{p_x},
+  \qquad
+  L_zY_{p_z}=0,
+\end{equation}
+so $p_x$ and $p_y$ are not eigenstates of $L_z$.
+
+\clearpage
+\subsection{Brief extension to the d orbitals}
+
+The $\ell=2$ subspace is five-dimensional.  Its complex basis has
+$m=-2,-1,0,1,2$, while a real Cartesian basis is
+\begin{equation}
+  \left\{d_{xy},d_{yz},d_{xz},d_{x^2-y^2},d_{z^2}\right\}.
+\end{equation}
+Their angular dependence is proportional to
+\begin{equation}
+  \frac{xy}{r^2},\quad
+  \frac{yz}{r^2},\quad
+  \frac{xz}{r^2},\quad
+  \frac{x^2-y^2}{r^2},\quad
+  \frac{3z^2-r^2}{r^2},
+\end{equation}
+respectively.  With the same phase convention used above, normalized real
+combinations include
+\begin{align}
+  Y_{d_{z^2}}&=Y_2^0
+  =\sqrt{\frac{5}{16\pi}}\frac{3z^2-r^2}{r^2},\\
+  Y_{d_{x^2-y^2}}&=\frac{Y_2^{-2}+Y_2^{+2}}{\sqrt{2}}
+  =\sqrt{\frac{15}{16\pi}}\frac{x^2-y^2}{r^2},\\
+  Y_{d_{xy}}&=\frac{\ii}{\sqrt{2}}\left(Y_2^{-2}-Y_2^{+2}\right)
+  =\sqrt{\frac{15}{4\pi}}\frac{xy}{r^2},\\
+  Y_{d_{xz}}&=\frac{Y_2^{-1}-Y_2^{+1}}{\sqrt{2}}
+  =\sqrt{\frac{15}{4\pi}}\frac{xz}{r^2},\\
+  Y_{d_{yz}}&=\frac{\ii}{\sqrt{2}}\left(Y_2^{-1}+Y_2^{+1}\right)
+  =\sqrt{\frac{15}{4\pi}}\frac{yz}{r^2}.
+\end{align}
+As for the $p$ orbitals, these real orbitals are simply a change of basis within
+the fixed-$\ell$ angular-momentum subspace.
+
+\end{document}
