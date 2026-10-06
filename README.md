@@ -10,6 +10,8 @@ This repository contains Jupyter notebooks for an undergraduate Quantum Physics 
 | `NB02.ipynb` | Infinite square well and time-dependent states |
 | `NB03.ipynb` | Quantum harmonic oscillator, ladder operators, wavefunctions, variational principle |
 | `NB04.ipynb` | Bound states, finite wells, delta-function potentials, numerical root finding |
+| `NB05.ipynb` | Quantum formalism, observables, commutators, and unitary transformations |
+| `NB06.ipynb` | Hydrogenic radial functions, radial probability, dilations, and magnetic fields |
 
 ## Ways to View the Notebooks
 
