@@ -12,7 +12,7 @@ This repository contains Jupyter notebooks for an undergraduate Quantum Physics 
 | `NB04.ipynb` | Bound states, finite wells, delta-function potentials, numerical root finding |
 | `NB05.ipynb` | Quantum formalism, observables, commutators, and unitary transformations |
 | `NB06.ipynb` | Hydrogenic radial functions, radial probability, dilations, and magnetic fields |
-| `NB07.ipynb` | WKB tunneling, alpha decay, coherent optical Bloch equations, and driven two-level dynamics |
+| `NB07.ipynb` | WKB tunneling, alpha decay, optical Bloch equations, driven dynamics, dephasing, and amplitude damping |
 
 ## Ways to View the Notebooks
 
